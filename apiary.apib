@@ -1,80 +1,123 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://apidoc.oneboxvector.org/
 
 # test-api
 
 Polls is a simple API allowing consumers to view polls and vote in them.
 
-## Questions Collection [/questions]
+## Products Collection [/products]
 
-### List All Questions [GET]
+### List All Products [GET]
 
 + Response 200 (application/json)
+        
+        {    
+            [
+                {   
+                    "id": "1",
+                    "name": "product 1",
+                    "type": "EVENT"
+                }
+            ]
+        }
+        
+        
+        
+## Products [/products/{question_id}]
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+### Product by id [GET]
 
-### Create a New Question [POST]
++ <id>: `1` (number,  optional) - param description
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
++ Response 200 (application/json)
+        
+        {    
+            [
+                {   
+                    "id": "1",
+                    "name": "product 1",
+                    "type": "EVENT"
+                }
+            ]
+        }
+        
+### Create a New Product [POST]
+
+Create new product
 
 + Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+        {  
+            "name": "product 2",
+            "type": "EVENT"
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/2
+            Location: /products/2
 
     + Body
 
+        
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
+                [
                     {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
+                        "id": "2",
+                        "name": "product 2",
+                        "type": "EVENT"
                     }
                 ]
+            }
+
++ Response 400 (application/json)
+
+### Update Product [PUT]
+
+Update product
+
++ Request (application/json)
+
+        {  "id": "2",,
+            "name": "product 2",
+            "type": "ACTIVITY"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /products/2
+
+    + Body
+    
+            {  
+                "id": "2",,
+                "name": "product 2",
+             "type": "ACTIVITY"
+            }
+            
+### Update Product [DELETE]
+
+Delete product
+
++ Request (application/json)
+
+        {  "id": "2",
+            "name": "product 2",
+            "type": "ACTIVITY"
+        }
+
++ Response 200 (application/json)
+
+    + Headers
+
+            Location: /products/2
+
+    + Body
+
+        
+            {
+               Resource deleted sucesfully
             }
