@@ -21,6 +21,17 @@ Polls is a simple API allowing consumers to view polls and vote in them.
             ]
         }
         
++ Response 200 (application/xml)
+    
+    ```xml
+        
+         <PolicySet xmlns:ns0="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"  
+                xmlns:ns1="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+                xmlns="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17"
+                ns0:PolicySetId="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:permit-overrides"
+                ns1:Version="1.0">
+        </PolicySet>
+    ```
         
         
 ## Products [/products/{question_id}]
